@@ -1,0 +1,4 @@
+﻿aaa bbb ccc ddd eee
+abc cba ccc ddd eee
+aaa bbc cbb ddd eee
+eaa bbc cbb ddd aea
