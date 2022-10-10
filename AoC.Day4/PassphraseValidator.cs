@@ -11,16 +11,7 @@ public class PassphraseValidator : IDay
         foreach (string line in input)
         {
             string[] words = line.Split(' ');
-            bool valid = true;
-            foreach (string word in words)
-            {
-                if (ContainsDuplicate(words, word))
-                {
-                    valid = false;
-                    break;
-                }
-            }
-            if (valid) sum++;
+            if (ContainsDuplicate(words)) sum++;
         }
         return sum;
     }
@@ -32,30 +23,34 @@ public class PassphraseValidator : IDay
         foreach (string line in input)
         {
             string[] words = line.Split(' ');
-            string[] charSortedWords = words.Select(x => string.Concat(x.OrderBy(o => o))).ToArray();
-            bool valid = true;
-            foreach (string word in words)
-            {
-                if (ContainsDuplicate(words, word) || ContainsAnagram(charSortedWords, word))
-                {
-                    valid = false;
-                    break;
-                }
-            }
-            if (valid) sum++;
+            if (ContainsDuplicate(words) && ContainsAnagram(words)) sum++;
         }
         return sum;
     }
 
-    private bool ContainsAnagram(string[] charSortedWords, string word)
+    private bool ContainsAnagram(string[] words)
     {
-        string sortedWord = string.Concat(word.OrderBy(x => x));
-        return charSortedWords.Where(w => w == sortedWord).Count() > 1;
+        string[] charSortedWords = words.Select(x => string.Concat(x.OrderBy(o => o))).ToArray();
+        foreach (string word in charSortedWords)
+        {
+            if (charSortedWords.Where(w => w == word).Count() > 1)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
-    private bool ContainsDuplicate(string[] words, string word)
+    private bool ContainsDuplicate(string[] words)
     {
-        return words.Where(w => w == word).Count() > 1;
+        foreach (string word in words)
+        {
+            if (words.Where(w => w == word).Count() > 1)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
 
