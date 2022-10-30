@@ -9,7 +9,7 @@ namespace AoC17.Test
         [InlineData("i2.txt", 51833)]
         public void PartOne(string fileName, int expected)
         {
-            CheckSumCalculation checkSumCalculation = new CheckSumCalculation();
+            ChecksumCalculation checkSumCalculation = new ChecksumCalculation();
             var result = checkSumCalculation.PartOne(fileName);
             Assert.Equal(expected, result);
         }
@@ -19,7 +19,7 @@ namespace AoC17.Test
         [InlineData("i2.txt", 288)]
         public void PartTwo(string fileName, int expected)
         {
-            CheckSumCalculation checkSumCalculation = new CheckSumCalculation();
+            ChecksumCalculation checkSumCalculation = new ChecksumCalculation();
             var result = checkSumCalculation.PartTwo(fileName);
             Assert.Equal(expected, result);
         }

@@ -2,7 +2,7 @@
 
 namespace AoC.Day2
 {
-    public class CheckSumCalculation : IDay
+    public class ChecksumCalculation : IDay
     {
         public int PartOne(string fileName)
         {
