@@ -1,25 +1,66 @@
-﻿open System.Linq
+﻿//open System.Linq
 
-let values = [4168; 3925; 858; 2203; 440; 185;2886; 160; 1811; 4272; 4333; 2180; 174; 157; 361; 1555]
-//values
+////let values = [1 .. 361527]
+////let lap = 2
+////let sq = 4
+////values[(((8*lap)-sq))..((((8*lap)-sq))+((sq+(8 * lap))-1))]
 
 
-////let isValidDivisor ints i = (Seq.map ((*) i) ints).Intersect(ints).Any()
-////let getDivisor ints = [2 .. (Seq.max ints)] |> Seq.find (isValidDivisor ints)
-////getDivisor values
+////0..3    4
+////4..15   12    ?..  (8*lap)
+////16..35  20
+////36..63  28
 
-//let isValidDivisor ints i = (Seq.map ((*) i) ints).Intersect(ints)
-//isValidDivisor values 2
 
-//let values = [3;4;5;8]
-//let evenDividable a ints = (Seq.tryFind(fun x -> x % a = 0) ints).IsSome
-//let getDevided (ints : int list ) = Seq.find(fun x -> evenDividable x (ints.Except([x]))) ints
-//getDevided values
+////0
+////4
 
-//let values = [3;4;5;8]
-let isEvenDividable a ints = (Seq.tryFind(fun x -> x % a = 0) ints).IsSome
-let getDevidedProduct (ints : int list ) = 
-    let a = (Seq.filter(fun x -> isEvenDividable x (ints.Except([x]))) ints).First()
-    let b = (Seq.filter(fun x -> x % a = 0) (ints.Except([a]))).First()
-    b/a
-let r = getDevidedProduct values
+////4
+////(4)+4+8
+
+////(4)+4+8
+////(4)+4+8+4+8+8
+
+////let rec nrOfLaps (lap:int) (values:int list)  =
+////    if Seq.length values = 0 then lap
+////    else nrOfLaps (lap+1) values[4+(lap*8)..] 
+
+//let rec lapN (lap:int) (values:int list)  =
+//    if Seq.length values < 5+(lap*8) then {| LastLap=values; Laps=lap+1; SideLength=1+(2*lap) |}
+//    else lapN (lap+1) values[4+(lap*8)..]
+
+
+//let part (values: int List) sideLength x =
+//    let w = values[0..sideLength-1]
+//    let s = values[sideLength..(sideLength * 2)-1]
+//    let e = values[sideLength * 2..(sideLength * 3)-1]
+//    let n = values[sideLength * 3..(sideLength * 4)-1]
+//    if w.Contains x then {| Side="w"; Index=(w |> Seq.findIndex (fun n -> n = x) ) |}
+//    else if s.Contains x then {| Side="s"; Index=(s |> Seq.findIndex (fun n -> n = x) ) |}
+//    else if e.Contains x then {| Side="e"; Index=(e |> Seq.findIndex (fun n -> n = x) ) |}
+//    else if n.Contains x then {| Side="n"; Index=(n |> Seq.findIndex (fun n -> n = x) ) |}
+//    else {| Side="none"; Index=int -1 |}
+
+//let manhattanDistanceX (laps:int) side =
+//    if side="w" || side="s" then laps-1
+//    else laps
+//let manhattanDistanceY (laps:int) sideLength side index =
+//    if side="n" then index - (int (sideLength/2))
+//    else if side="s" then index - (int ((sideLength/2)-1))
+//    else if side="w" then index - (int ((sideLength/2)))
+//    else if side="e" then index - (int ((sideLength/2)))
+//    else 99
+
+//let manhattanDistance (laps:int) sideLength side index =
+//    let x = manhattanDistanceX laps side
+//    let y = manhattanDistanceY laps sideLength side index
+//    abs x + abs y
+
+
+//let values = [1 .. 64]
+//let info = lapN 0 values
+
+//let infoB = part info.LastLap info.SideLength 43
+
+//let md = manhattanDistance info.Laps info.SideLength infoB.Side infoB.Index
+

@@ -35,3 +35,22 @@ module Day2 =
     [<InlineData("Day 2/i2.txt", 288)>]
     let ``Day2_part2Alt`` (fileName, p2) =
         Assert.Equal(p2, part2Alt (readFile fileName))
+
+module Day3 = 
+    open Xunit
+    open SpiralMemory
+
+    [<Theory>]
+    [<InlineData(361527, 326)>] // Then real deal!
+    [<InlineData(1, 0)>]
+    [<InlineData(12, 3)>]
+    [<InlineData(1024, 31)>]
+    [<InlineData(17, 4)>]
+    [<InlineData(22, 3)>]
+    [<InlineData(27, 4)>]
+    [<InlineData(32, 5)>]
+    let ``Day3`` (num, expected) =
+        let r = part1 num
+        Assert.Equal(expected, r)
+
+
